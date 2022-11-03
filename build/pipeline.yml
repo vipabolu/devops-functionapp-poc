@@ -1,0 +1,73 @@
+trigger:
+  branches:
+    include:
+      - feature/*
+      - master
+
+pr:
+  - master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: 'Release'
+  name: $(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+  CustomValue: 1.0.$(Build.BuildId)
+
+steps:
+- script: echo "##vso[build.updatebuildnumber]$(CustomValue)"
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'
+    includePreviewVersions: true
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+    vstsFeed: '754990a4-4783-4972-b24e-e185965ce4ac'
+  displayName: 'dotnet restore'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    workingDirectory: '$(system.defaultWorkingDirectory)/src'
+  displayName: 'dotnet build'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    arguments: '--configuration $(BuildConfiguration) --output $(system.defaultWorkingDirectory)/publish'
+    zipAfterPublish: false
+    modifyOutputPath: false
+    workingDirectory: '$(system.defaultWorkingDirectory)/src'
+  displayName: 'dotnet publish'
+
+- task: OctopusPack@4
+  inputs:
+    PackageId: 'HTTPTrigger'
+    PackageFormat: 'Zip'
+    PackageVersion: '$(Build.BuildNumber)'
+    SourcePath: '$(system.defaultWorkingDirectory)/publish'
+    OutputPath: '$(Build.ArtifactStagingDirectory)'
+
+- task: OctopusPush@4
+  inputs:
+    OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
+    Space: 'Spaces-1'
+    Package: '$(Build.ArtifactStagingDirectory)/HTTPTrigger.$(Build.BuildNumber).zip'
+    Replace: 'false'
+
+- task: OctopusCreateRelease@4
+  inputs:
+    OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
+    Space: 'Spaces-1'
+    ProjectGroup: 'ProjectGroups-1'
+    ProjectName: 'Projects-23'
+    ReleaseNumber: '$(Build.BuildNumber)'
+    Channel: 'Channels-22'
