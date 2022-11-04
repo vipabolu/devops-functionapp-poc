@@ -1,19 +1,19 @@
-variable "AzResourceGroup" {
-    value "inxnpipelinepoc01" {
+variable "AzFunctionName" {
+    value "inxn-dev-httpexample" {
         environment = ["development"]
     }
 
-    value "inxnpipelinepoc2" {
+    value "inxn-staging-httpexample" {
         environment = ["staging"]
     }
 }
 
-variable "AzFunctionName" {
-    value "inxnpipelinepoc01" {
+variable "AzResourceGroup" {
+    value "inxn-dev-poc" {
         environment = ["development"]
     }
 
-    value "inxnpipelinepoc2" {
+    value "inxn-staging-poc" {
         environment = ["staging"]
     }
 }
