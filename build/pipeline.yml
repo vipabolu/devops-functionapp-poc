@@ -70,4 +70,4 @@ steps:
     ProjectGroup: 'ProjectGroups-1'
     ProjectName: 'Projects-23'
     ReleaseNumber: '$(Build.BuildNumber)'
-    Channel: 'Channels-22'
+    Channel: 'Channels-23'
