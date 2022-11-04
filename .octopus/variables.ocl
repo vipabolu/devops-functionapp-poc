@@ -1,0 +1,19 @@
+variable "AzResourceGroup" {
+    value "inxnpipelinepoc01" {
+        environment = ["development"]
+    }
+
+    value "inxnpipelinepoc2" {
+        environment = ["staging"]
+    }
+}
+
+variable "AzFunctionName" {
+    value "inxnpipelinepoc01" {
+        environment = ["development"]
+    }
+
+    value "inxnpipelinepoc2" {
+        environment = ["staging"]
+    }
+}
