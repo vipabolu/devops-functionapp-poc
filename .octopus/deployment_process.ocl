@@ -11,5 +11,16 @@ step "deploy-httptrigger-azfunction" {
             OctopusUseBundledTooling = "True"
         }
         worker_pool_variable = ""
+
+        packages "HTTPTrigger" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "HTTPTrigger"
+            properties = {
+                Extract = "False"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
