@@ -1,7 +1,7 @@
 step "httptrigger-deploy-az-function" {
     name = "Deploy"
 
-    action {
+    action "deploy" {
         action_type = "Octopus.AzurePowerShell"
         properties = {
             Octopus.Action.Azure.AccountId = "interxion-dev-experiments"
