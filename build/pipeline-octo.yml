@@ -62,3 +62,12 @@ steps:
     Space: 'Spaces-1'
     Package: '$(Build.ArtifactStagingDirectory)/HTTPTrigger-NoVC.$(Build.BuildNumber).zip'
     Replace: 'false'
+
+- task: OctopusCreateRelease@4
+  inputs:
+    OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
+    Space: 'Spaces-1'
+    ProjectGroup: 'ProjectGroups-1'
+    ProjectName: 'Projects-43'
+    ReleaseNumber: '$(Build.BuildNumber)'
+    Channel: 'Channels-43'
