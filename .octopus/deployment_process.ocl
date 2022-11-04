@@ -7,7 +7,7 @@ step "deploy-httptrigger-azfunction" {
             Octopus.Action.Azure.AccountId = "interxion-dev-experiments"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 az account show
-                az functionapp deployment source config-zip -g $AzResourceGroup -n $AzFunctionName --src HTTPExample.zip
+                az functionapp deployment source config-zip -g $AzResourceGroup -n $AzFunctionName --src HTTPTrigger.zip
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
