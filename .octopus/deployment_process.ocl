@@ -1,0 +1,29 @@
+step "deploy-httptrigger-azfunction" {
+    name = "Deploy HTTPTrigger (AzFunction)"
+
+    action {
+        action_type = "Octopus.AzurePowerShell"
+        properties = {
+            Octopus.Action.Azure.AccountId = "interxion-dev-experiments"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                az account show
+                az functionapp deployment source config-zip -g $AzResourceGroup -n $AzFunctionName --src HTTPExample.zip
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "True"
+        }
+        worker_pool_variable = ""
+
+        packages "HTTPTrigger" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "HTTPTrigger"
+            properties = {
+                Extract = "False"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
