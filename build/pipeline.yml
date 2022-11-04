@@ -68,6 +68,6 @@ steps:
     OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
     Space: 'Spaces-1'
     ProjectGroup: 'ProjectGroups-1'
-    ProjectName: 'Projects-23'
+    ProjectName: 'Projects-42'
     ReleaseNumber: '$(Build.BuildNumber)'
-    Channel: 'Channels-23'
+    Channel: 'Channels-42'
