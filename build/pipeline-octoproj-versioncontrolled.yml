@@ -56,14 +56,14 @@ steps:
     SourcePath: '$(system.defaultWorkingDirectory)/publish'
     OutputPath: '$(Build.ArtifactStagingDirectory)'
 
-- task: OctopusPush@4
+- task: OctopusPush@5
   inputs:
     OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
     Space: 'Spaces-1'
     Package: '$(Build.ArtifactStagingDirectory)/HTTPTrigger.$(Build.BuildNumber).zip'
     Replace: 'false'
 
-- task: OctopusCreateRelease@5
+- task: OctopusCreateRelease@4
   inputs:
     OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
     Space: 'Spaces-1'
