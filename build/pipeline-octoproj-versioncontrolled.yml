@@ -63,7 +63,7 @@ steps:
     Package: '$(Build.ArtifactStagingDirectory)/HTTPTrigger.$(Build.BuildNumber).zip'
     Replace: 'false'
 
-- task: OctopusCreateRelease@4
+- task: OctopusCreateRelease@5
   inputs:
     OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
     Space: 'Spaces-1'
