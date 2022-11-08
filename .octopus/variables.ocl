@@ -1,19 +1,19 @@
 variable "AzFunctionName" {
-    value "inxn-dev-httpexample" {
+    value "inxn-dev-servicerequest-func" {
         environment = ["development"]
     }
 
-    value "inxn-staging-httpexample" {
+    value "inxn-staging-servicerequest-func" {
         environment = ["staging"]
     }
 }
 
 variable "AzResourceGroup" {
-    value "inxn-dev-poc" {
+    value "inxn-dev-servicerequest" {
         environment = ["development"]
     }
 
-    value "inxn-staging-poc" {
+    value "inxn-staging-servicerequest" {
         environment = ["staging"]
     }
 }
