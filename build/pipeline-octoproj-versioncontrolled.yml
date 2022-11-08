@@ -52,7 +52,7 @@ steps:
   inputs:
     version: '9.*'
 
-- task: OctopusPack@5
+- task: OctopusPack@4
   inputs:
     PackageId: 'HTTPTrigger'
     PackageFormat: 'Zip'
