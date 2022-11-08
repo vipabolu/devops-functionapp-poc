@@ -54,7 +54,7 @@ steps:
 
 - task: OctopusPack@4
   inputs:
-    PackageId: 'HTTPTrigger'
+    PackageId: 'ServiceRequest'
     PackageFormat: 'Zip'
     PackageVersion: '$(Build.BuildNumber)'
     SourcePath: '$(system.defaultWorkingDirectory)/publish'
@@ -64,7 +64,7 @@ steps:
   inputs:
     OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
     Space: 'Spaces-1'
-    Package: '$(Build.ArtifactStagingDirectory)/HTTPTrigger.$(Build.BuildNumber).zip'
+    Package: '$(Build.ArtifactStagingDirectory)/ServiceRequest.$(Build.BuildNumber).zip'
     Replace: 'false'
 
 - task: OctopusCreateRelease@5
