@@ -12,7 +12,7 @@ namespace Aqovia.POC.Functions
 {
     public static class HttpTrigger
     {
-        [FunctionName("HttpTrigger")]
+        [FunctionName("ServiceRequest")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -26,8 +26,8 @@ namespace Aqovia.POC.Functions
             name = name ?? data?.name;
 
             string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+                ? "This HTTP triggered function ServiceRequest executed successfully. Pass a name in the query string or in the request body for a personalized response."
+                : $"Hello, {name}. This HTTP triggered function ServiceRequest executed successfully.";
 
             return new OkObjectResult(responseMessage);
         }
