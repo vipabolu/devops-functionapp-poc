@@ -48,7 +48,11 @@ steps:
     workingDirectory: '$(system.defaultWorkingDirectory)/src'
   displayName: 'dotnet publish'
 
-- task: OctopusPack@4
+- task: OctoInstaller@5
+  inputs:
+    version: '9.*'
+
+- task: OctopusPack@5
   inputs:
     PackageId: 'HTTPTrigger'
     PackageFormat: 'Zip'
@@ -63,7 +67,7 @@ steps:
     Package: '$(Build.ArtifactStagingDirectory)/HTTPTrigger.$(Build.BuildNumber).zip'
     Replace: 'false'
 
-- task: OctopusCreateRelease@4
+- task: OctopusCreateRelease@5
   inputs:
     OctoConnectedServiceName: 'OctopusDeploy-InxnPOC'
     Space: 'Spaces-1'
@@ -71,5 +75,3 @@ steps:
     ProjectName: 'Projects-42'
     ReleaseNumber: '$(Build.BuildNumber)'
     Channel: 'Channels-42'
-    GitRef: 'feature/create-pipeline'
-    GitCommit: 'b5350a750107d8449e8ab98346f9b3ea28a4872e'
