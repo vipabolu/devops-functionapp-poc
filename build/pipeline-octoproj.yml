@@ -14,6 +14,7 @@ variables:
   buildConfiguration: 'Release'
   name: $(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
   CustomValue: 1.0.$(Build.BuildId)
+  BRANCH_NAME: $[replace(variables['Build.SourceBranch'], 'refs/heads/', '')]
 
 steps:
 - script: echo "##vso[build.updatebuildnumber]$(CustomValue)"
@@ -75,4 +76,4 @@ steps:
     ProjectName: 'Projects-44'
     ReleaseNumber: '$(Build.BuildNumber)'
     Channel: 'Channels-44'
-    GitRef: 'master'
+    GitRef: '$(BRANCH_NAME)'
