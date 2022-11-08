@@ -15,10 +15,10 @@ step "httptrigger-deploy-az-function" {
         }
         worker_pool_variable = ""
 
-        packages "HTTPTrigger" {
+        packages "ServiceRequest" {
             acquisition_location = "Server"
             feed = "octopus-server-built-in"
-            package_id = "HTTPTrigger"
+            package_id = "ServiceRequest"
             properties = {
                 Extract = "False"
                 Purpose = ""
