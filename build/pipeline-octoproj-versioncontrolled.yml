@@ -75,3 +75,4 @@ steps:
     ProjectName: 'Projects-42'
     ReleaseNumber: '$(Build.BuildNumber)'
     Channel: 'Channels-42'
+    GitRef: 'feature/create-pipeline'
