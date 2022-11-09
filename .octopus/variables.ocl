@@ -1,19 +1,21 @@
-variable "AzFunctionName" {
-    value "inxn-dev-servicerequest-func" {
-        environment = ["development"]
-    }
-
-    value "inxn-staging-servicerequest-func" {
-        environment = ["staging"]
-    }
-}
-
 variable "AzResourceGroup" {
     value "inxn-dev-servicerequest" {
         environment = ["development"]
     }
 
     value "inxn-staging-servicerequest" {
+        description = ""
+        environment = ["staging"]
+    }
+}
+
+variable "AzFunctionName" {
+    value "inxn-dev-servicerequest-func" {
+        environment = ["development"]
+    }
+
+    value "inxn-staging-servicerequest-func" {
+        description = ""
         environment = ["staging"]
     }
 }
